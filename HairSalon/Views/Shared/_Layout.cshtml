@@ -3,11 +3,12 @@
 
 <head>
   <meta charset="utf-8">
-  <title>Digital Hair Salon | @ViewBag.PageTitle</title>
+  <title>@ViewBag.PageTitle - digital-hair-salon</title>
   <link href="~/css/styles.css" rel="stylesheet" type="text/css">
 </head>
 
 <body>
+  @await Html.PartialAsync("_Header")
   @RenderBody()
 
   <script src="~/lib/jquery/dist/jquery.min.js"></script>

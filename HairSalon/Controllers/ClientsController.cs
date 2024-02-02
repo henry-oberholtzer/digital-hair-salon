@@ -16,10 +16,11 @@ public class ClientsController : Controller
 
     public ActionResult Index()
     {
-        List<Client> model = _db.Clients
+        List<Client> clients = _db.Clients
         .Include(Client => Client.Stylist)
         .ToList();
-        return View(model);
+        ViewBag.PageTitle = "All Clients";
+        return View(clients);
     }
 
     public ActionResult Create(int? id)
@@ -32,7 +33,7 @@ public class ClientsController : Controller
           }
         }
         ViewBag.StylistSelectList = stylistList;
-        
+        ViewBag.PageTitle = "Add New Client";
         return View();
     }
 
@@ -57,12 +58,14 @@ public class ClientsController : Controller
         Client thisClient = _db.Clients
         .Include(Client => Client.Stylist)
         .FirstOrDefault(Client => Client.ClientId == id);
+        ViewBag.PageTitle = $"{thisClient.Name}";
         return View(thisClient);
     }
     public ActionResult Edit(int id)
     {
         Client thisClient = _db.Clients.FirstOrDefault(Client => Client.ClientId == id);
         ViewBag.CategoryId = new SelectList(_db.Stylists, "StylistId", "Name");
+        ViewBag.PageTitle = $"Editing {thisClient.Name}";
         return View(thisClient);
     }
 

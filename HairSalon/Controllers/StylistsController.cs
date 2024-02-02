@@ -16,12 +16,14 @@ namespace HairSalon.Controllers
     public ActionResult Index()
     {
       List<Stylist> Stylists = _db.Stylists.Include(stylist => stylist.Clients).ToList();
+      ViewBag.PageTitle = $"All Stylists";
       return View(Stylists);
     }
 
     public ActionResult Create()
     {
       ViewBag.DateNow = DateTime.Now.ToString("dd-MM-yyyy");
+      ViewBag.PageTitle = $"Add New Stylist";
       return View();
     }
 
@@ -39,6 +41,7 @@ namespace HairSalon.Controllers
       Stylist targetStylist = _db.Stylists
           .Include(stylist => stylist.Clients)
           .FirstOrDefault(stylist => stylist.StylistId == id);
+      ViewBag.PageTitle = $"{targetStylist.Name}";
       return View(targetStylist);
     }
 

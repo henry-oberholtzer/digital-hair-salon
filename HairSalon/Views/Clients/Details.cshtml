@@ -1,13 +1,12 @@
-@* @{
-Layout = "_Layout";
-}
+@model Client
 
-@model ToDoList.Models.Item
+<a asp-controller="Stylists" asp-action="Index">Return to List</a>
 
-<h2>Item Details</h2>
+<h4>@Html.DisplayNameFor(model => model.Name)</h4>
+<h1>@Html.DisplayFor(model => model.Name)</h1>
+<h5>Added @Model.DateAdded.ToString("D").</h5>
+<p>@Html.DisplayFor(model => model.Notes)</p>
+
+<a asp-controller="Clients" asp-action="Edit" asp-route-id=@Model.StylistId>Edit</a>
+<a asp-controller="Clients" asp-action="Delete" asp-route-stylistid=@Model.ClientId>Delete</a>
 <hr />
-<h3>@Html.DisplayNameFor(model => model.Description): @Html.DisplayFor(model => model.Description)</h3>
-<h3>@Html.DisplayNameFor(model => model.Category): @Html.DisplayFor(model => model.Category.Name)<h3>
-
-<p>@Html.ActionLink("Edit Item", "Edit", new { id = Model.ItemId })</p>
-<p>@Html.ActionLink("Back to list", "Index")</p> *@
