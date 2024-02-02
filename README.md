@@ -22,12 +22,11 @@ By Henry Oberholtzer
 - Successful usage of GET and POST routes
 - MVC routes follow RESTful conventions
 
-## Project Structure
-
-```
-.gitignore
-README.md
-```
+## Stretch Goal Features
+- Stylists and clients are sortable by Date Added, Name, or # of clients / visits
+- Edit functionality for Stylists and Clients
+- Server side data validation
+- Pagination
 
 ## Setup/Installation Requirements
 
@@ -52,6 +51,7 @@ README.md
 
 ## Known Bugs
 
+- Grammatical errors for "1 Clients" in Stylists/Index.cshtml
 - Bugs are left as an exercise to the reader
 
 ## License

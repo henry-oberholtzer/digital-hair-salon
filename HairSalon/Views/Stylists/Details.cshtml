@@ -1,0 +1,24 @@
+@model HairSalon.Models.Stylist
+@{
+  Layout = "_Layout";
+}
+
+<a asp-controller="Stylists" asp-action="Index">Return to List</a>
+
+<h4>@Html.DisplayNameFor(model => model.Name)</h4>
+<h1>@Html.DisplayFor(model => model.Name)</h1>
+<h5>Added @Model.DateAdded.ToString("D"). | @Model.Clients.Count Clients </h5>
+<p>@Html.DisplayFor(model => model.About)</p>
+
+<a asp-controller="Clients" asp-action="Create" asp-route-id=@Model.StylistId>Add a client</a>
+<a asp-controller="Stylists" asp-action="Delete" asp-route-stylistid=@Model.StylistId>Delete</a>
+<hr />
+@if (Model.Clients.Count == 0)
+{
+  <li>No clients have been added.</li>
+}
+
+@foreach (Client client in Model.Clients)
+{
+  <li><a asp-controller="Stylists" asp-action="Details" asp-route-id=@client.ClientId>@client.Name</a></li>
+}

@@ -1,0 +1,17 @@
+@{
+  Layout = "_Layout";
+  ViewBag.PageTitle = "Add A Stylist";
+}
+
+@model HairSalon.Models.Stylist
+
+<form asp-controller="Stylists" asp-action="Create" method="post">
+  <label asp-for="Name"></label><br />
+  <input asp-for="Name" type="text" placeholder="Name" /><br />
+  <span asp-validation-for="Name"></span><br />
+  <label asp-for="About"></label><br />
+  <textarea asp-for="About" placeholder="About"></textarea><br />
+  <span asp-validation-for="About"></span><br />
+  <input asp-for="DateAdded" type="hidden" value=@ViewBag.DateNow />
+  <button type="submit">Add</button>
+</form>
