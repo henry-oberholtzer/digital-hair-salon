@@ -1,19 +1,14 @@
 using Microsoft.AspNetCore.Mvc;
 
-namespace ToDoList.Controllers
+namespace HairSalon.Controllers
 {
-    public class HomeController : Controller
+  public class HomeController : Controller
+  {
+    [HttpGet("/")]
+    public ActionResult Index()
     {
-        [HttpGet("/")]
-        public ActionResult Index()
-        {
-            return View();
-        }
-
-        [Route("/a-photo")]
-        public ActionResult FavoritePhotos()
-        {
-            return View();
-        }
+      return View();
     }
+
+  }
 }

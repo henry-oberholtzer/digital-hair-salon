@@ -1,5 +1,5 @@
-@{
-  Layout = "_Layout";
+@* @{
+Layout = "_Layout";
 }
 
 @model ToDoList.Models.Item
@@ -10,12 +10,12 @@
 
 @using (Html.BeginForm())
 {
-  @Html.HiddenFor(model => model.ItemId)
-  @Html.LabelFor(model => model.Description)
-  @Html.EditorFor(model => model.Description)
+@Html.HiddenFor(model => model.ItemId)
+@Html.LabelFor(model => model.Description)
+@Html.EditorFor(model => model.Description)
 
-  @Html.LabelFor(model => model.Category)
-  @Html.DropDownList("CategoryId")
-  <input type="submit" value="Save" />
+@Html.LabelFor(model => model.Category)
+@Html.DropDownList("CategoryId")
+<input type="submit" value="Save" />
 }
-<p>@Html.ActionLink("Back to List", "Index")</p>
+<p>@Html.ActionLink("Back to List", "Index")</p> *@

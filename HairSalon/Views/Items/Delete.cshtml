@@ -1,5 +1,5 @@
-@{
-  Layout = "_Layout";
+@* @{
+Layout = "_Layout";
 }
 
 @model ToDoList.Models.Item
@@ -8,7 +8,10 @@
 
 @Html.DisplayNameFor(model => model.Description): @Html.DisplayFor(model => model.Description)
 @using (Html.BeginForm())
+
+
+
 {
-  <input type="submit" value="Delete" />
+<input type="submit" value="Delete" />
 }
-<p>@Html.ActionLink("Backl to List", "Index")</p>
+<p>@Html.ActionLink("Backl to List", "Index")</p> *@

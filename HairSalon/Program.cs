@@ -1,8 +1,6 @@
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.DependencyInjection;
-using ToDoList.Models;
-using ToDoList.Utilities;
-
+using HairSalon.Utilities;
+using HairSalon.Models;
 
 WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 
@@ -14,7 +12,7 @@ builder.Services.AddRouting(option =>
 builder.Services.AddControllersWithViews();
 
 
-builder.Services.AddDbContext<CollectionsManagerContext>(
+builder.Services.AddDbContext<HairSalonContext>(
     dbContextOptions => dbContextOptions.UseMySql(
         builder.Configuration["ConnectionStrings:DefaultConnection"],
         ServerVersion.AutoDetect(builder.Configuration["ConnectionStrings:DefaultConnection"]
