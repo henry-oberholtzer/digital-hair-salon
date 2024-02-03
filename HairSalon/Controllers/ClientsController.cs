@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc;
+using HairSalon.Controllers;
 using HairSalon.Models;
 
 namespace ToDoList.Controllers;
@@ -25,12 +26,10 @@ public class ClientsController : Controller
 
     public ActionResult Create(int? id)
     {
-        
-        SelectList stylistList = new(_db.Stylists, "StylistId", "Name");
-        foreach (SelectListItem stylist in stylistList) {
-          if (stylist.Value == id.ToString()) {
-            stylist.Selected = true;
-          }
+        SelectList stylistList = _db.StylistList(id);
+        if (!stylistList.Any())
+        {
+            return RedirectToAction("Create", "Stylists");
         }
         ViewBag.StylistSelectList = stylistList;
         ViewBag.PageTitle = "Add New Client";
@@ -38,19 +37,12 @@ public class ClientsController : Controller
     }
 
     [HttpPost]
-    public ActionResult Create(Client Client)
+    public ActionResult Create(Client client)
     {
-        if (Client.StylistId == 0)
-        {
-            return RedirectToAction("Create");
-        }
-        else
-        {
-            _db.Clients.Add(Client);
-            _db.SaveChanges();
-            return RedirectToAction("Index");
-
-        }
+        client.DateAdded = DateTime.Now;
+        _db.Clients.Add(client);
+        _db.SaveChanges();
+        return RedirectToAction("Index");
     }
 
     public ActionResult Details(int id)
@@ -63,8 +55,8 @@ public class ClientsController : Controller
     }
     public ActionResult Edit(int id)
     {
-        Client thisClient = _db.Clients.FirstOrDefault(Client => Client.ClientId == id);
-        ViewBag.CategoryId = new SelectList(_db.Stylists, "StylistId", "Name");
+        Client thisClient = _db.Clients.Include(Client => Client.Stylist).FirstOrDefault(Client => Client.ClientId == id);
+        ViewBag.StylistSelectList = _db.StylistList();
         ViewBag.PageTitle = $"Editing {thisClient.Name}";
         return View(thisClient);
     }
@@ -80,8 +72,7 @@ public class ClientsController : Controller
     [HttpPost]
     public ActionResult Delete(int id)
     {
-        Client thisClient = _db.Clients.FirstOrDefault(Client => Client.ClientId == id);
-        _db.Clients.Remove(thisClient);
+        _db.Clients.Remove(_db.GetClient(id));
         _db.SaveChanges();
         return RedirectToAction("Index");
     }

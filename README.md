@@ -23,8 +23,9 @@ By Henry Oberholtzer
 - MVC routes follow RESTful conventions
 
 ## Stretch Goal Features
-- Stylists and clients are sortable by Date Added, Name, or # of clients / visits
+- Styling
 - Edit functionality for Stylists and Clients
+- Stylists and clients are sortable by Date Added, Name, or # of clients / visits
 - Server side data validation
 - Pagination
 
@@ -35,14 +36,14 @@ By Henry Oberholtzer
 - Open the folder with your terminal and run `dotnet restore` to gather necessary resources.
 - To run the application, within the solution folder, run the command `dotnet run` after the restore.
 - A local instance of MySQL is required to be set up and running to use the project.
-- You will need to estalish a copy of the database on your own machine, by importing the `to_do_list_efcore.sql` scheme into your server.
+- You will need to estalish a copy of the database on your own machine, by importing the `henry_oberholtzer.sql` scheme into your server.
 - In the production direction, `/ProjectName` run `$ touch appsettings.json`
 - In `appsettings.json`, enter the following, replacing `USERNAME` and `PASSWORD` to match the settings of your local MySQL server.
   
 ```
 {
     "ConnectionStrings": {
-        "DefaultConnection": "Server=localhost;Port=3306;database=henry_oberholtzer.sql;uid=USERNAME;pwd=PASSWORD;"
+        "DefaultConnection": "Server=localhost;Port=3306;database=henry_oberholtzer;uid=USERNAME;pwd=PASSWORD;"
     }
 }
 ```
@@ -52,7 +53,7 @@ By Henry Oberholtzer
 ## Known Bugs
 
 - Grammatical errors for "1 Clients" in Stylists/Index.cshtml
-- Bugs are left as an exercise to the reader
+- Other bugs are left as an exercise to the reader
 
 ## License
 

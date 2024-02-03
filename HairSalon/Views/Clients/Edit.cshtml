@@ -1,18 +1,13 @@
-@*
-@model ToDoList.Models.Item
+@model HairSalon.Models.Client
 
-<h2>Edit</h2>
-
-<h4>Edit this item: @Html.DisplayFor(model => model.Description)</h4>
-
-@using (Html.BeginForm())
-{
-@Html.HiddenFor(model => model.ItemId)
-@Html.LabelFor(model => model.Description)
-@Html.EditorFor(model => model.Description)
-
-@Html.LabelFor(model => model.Category)
-@Html.DropDownList("CategoryId")
-<input type="submit" value="Save" />
-}
-<p>@Html.ActionLink("Back to List", "Index")</p> *@
+<form asp-controller="Clients" asp-action="Edit" method="post">
+  <label asp-for="Name"></label><br />
+  <input asp-for="Name" type="text" placeholder="Name" /><br />
+  <span asp-validation-for="Name"></span><br />
+  <label asp-for="Notes"></label><br />
+  <textarea asp-for="Notes" placeholder="About"></textarea><br />
+  <span asp-validation-for="Notes"></span><br />
+  <select asp-for="StylistId" asp-items=@ViewBag.StylistSelectList></select>
+  <input asp-for="DateAdded" type="hidden" value=@Model.DateAdded />
+  <button type="submit">Save</button>
+</form>

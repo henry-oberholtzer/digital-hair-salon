@@ -7,7 +7,9 @@
 <h5>Added @Model.DateAdded.ToString("D"). | @Model.Clients.Count Clients </h5>
 <p>@Html.DisplayFor(model => model.About)</p>
 
-<a asp-controller="Clients" asp-action="Create" asp-route-id=@Model.StylistId>Add a client</a>
-<a asp-controller="Stylists" asp-action="Delete" asp-route-stylistid=@Model.StylistId>Delete</a>
+<a asp-controller="Clients" asp-action="Create" asp-route-id=@Model.StylistId><button>Add a client</button></a>
+<form asp-controller="Stylists" asp-action="Delete" asp-route-id=@Model.StylistId method="post">
+  <button type="submit">Delete</button>
+</form>
 <hr />
 @await Html.PartialAsync("_ClientList", Model.Clients)

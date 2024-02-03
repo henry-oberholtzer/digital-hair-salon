@@ -4,9 +4,11 @@
 
 <h4>@Html.DisplayNameFor(model => model.Name)</h4>
 <h1>@Html.DisplayFor(model => model.Name)</h1>
-<h5>Added @Model.DateAdded.ToString("D").</h5>
+<h5>Added @Model.DateAdded.ToString("D"). Stylist: @Model.Stylist.Name</h5>
 <p>@Html.DisplayFor(model => model.Notes)</p>
 
-<a asp-controller="Clients" asp-action="Edit" asp-route-id=@Model.StylistId>Edit</a>
-<a asp-controller="Clients" asp-action="Delete" asp-route-stylistid=@Model.ClientId>Delete</a>
+<a asp-controller="Clients" asp-action="Edit" asp-route-id=@Model.StylistId><button>Edit</button></a>
+<form asp-controller="Clients" asp-action="Delete" asp-route-id=@Model.ClientId method="post">
+  <button type="submit">Delete</button>
+</form>
 <hr />

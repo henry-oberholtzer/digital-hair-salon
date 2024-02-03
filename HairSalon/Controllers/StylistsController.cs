@@ -1,9 +1,10 @@
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc;
 using HairSalon.Models;
 
-namespace HairSalon.Controllers
-{
+namespace HairSalon.Controllers;
+
   public class StylistsController : Controller
   {
     private readonly HairSalonContext _db;
@@ -46,13 +47,12 @@ namespace HairSalon.Controllers
     }
 
     [HttpPost]
-    public ActionResult Delete(int stylistid)
+    public ActionResult Delete(int id)
     {
       Stylist targetStylist = _db.Stylists
-          .FirstOrDefault(stylist => stylist.StylistId == stylistid);
+          .FirstOrDefault(stylist => stylist.StylistId == id);
       _db.Stylists.Remove(targetStylist);
       _db.SaveChanges();
       return RedirectToAction("Index");
     }
   }
-}
