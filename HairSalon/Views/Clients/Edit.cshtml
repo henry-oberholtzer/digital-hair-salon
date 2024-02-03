@@ -1,13 +1,2 @@
-@model Client
-
-<form asp-controller="Clients" asp-action="Edit" method="post">
-  <label asp-for="Name"></label><br />
-  <input asp-for="Name" type="text" placeholder="Name" /><br />
-  <span asp-validation-for="Name"></span><br />
-  <label asp-for="Notes"></label><br />
-  <textarea asp-for="Notes" placeholder="About"></textarea><br />
-  <span asp-validation-for="Notes"></span><br />
-  <select asp-for="StylistId" asp-items=@ViewBag.StylistSelectList></select>
-  <input asp-for="DateAdded" type="hidden" value=@Model.DateAdded />
-  <button type="submit">Save</button>
-</form>
+<h1>Editing @Model["Client"].Name</h1>
+@await Html.PartialAsync("_ClientForm")

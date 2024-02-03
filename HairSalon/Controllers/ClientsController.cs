@@ -33,7 +33,7 @@ public class ClientsController : Controller
             {"Usage", "create"},
         };
         ViewBag.PageTitle = "Add New Client";
-        return View("Form", model);
+        return View(model);
     }
 
     [HttpPost]
@@ -62,7 +62,7 @@ public class ClientsController : Controller
             {"SelectList", stylistList },
             {"Usage", "edit"},
         };
-        return View("Form", model);
+        return View(model);
     }
 
     [HttpPost]
