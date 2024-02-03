@@ -8,7 +8,7 @@ public class HairSalonContext : DbContext
   public DbSet<Client> Clients { get; set; }
   public HairSalonContext(DbContextOptions options) : base(options) { }
 
-  public SelectList StylistList(int? id = null)
+  public SelectList StylistSelectList(int? id = null)
   {
     SelectList stylistList = new(Stylists, "StylistId", "Name");
     if (id != null)
@@ -24,5 +24,11 @@ public class HairSalonContext : DbContext
     return stylistList;
   }
 
-  public Client GetClient(int id) => Clients.Include(Client => Client.Stylist).FirstOrDefault(client => client.ClientId == id);
+  private IQueryable<Stylist> StylistsWithClients() => Stylists.Include(stylist => stylist.Clients);
+  public Stylist GetStylist(int id) => StylistsWithClients().FirstOrDefault(stylist => stylist.StylistId == id);
+  public List<Stylist> GetStylistList() => StylistsWithClients().ToList();
+
+  private IQueryable<Client> ClientsWithStylist() => Clients.Include(client => client.Stylist);
+  public Client GetClient(int id) => ClientsWithStylist().FirstOrDefault(client => client.ClientId == id);
+  public List<Client> GetClientList() => ClientsWithStylist().ToList();
 }

@@ -1,5 +1,3 @@
-using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc;
 using HairSalon.Models;
 
@@ -16,7 +14,7 @@ namespace HairSalon.Controllers;
 
     public ActionResult Index()
     {
-      List<Stylist> Stylists = _db.Stylists.Include(stylist => stylist.Clients).ToList();
+      List<Stylist> Stylists = _db.GetStylistList();
       ViewBag.PageTitle = $"All Stylists";
       return View(Stylists);
     }
@@ -39,9 +37,7 @@ namespace HairSalon.Controllers;
 
     public ActionResult Details(int id)
     {
-      Stylist targetStylist = _db.Stylists
-          .Include(stylist => stylist.Clients)
-          .FirstOrDefault(stylist => stylist.StylistId == id);
+      Stylist targetStylist = _db.GetStylist(id);
       ViewBag.PageTitle = $"{targetStylist.Name}";
       return View(targetStylist);
     }
@@ -49,8 +45,7 @@ namespace HairSalon.Controllers;
     [HttpPost]
     public ActionResult Delete(int id)
     {
-      Stylist targetStylist = _db.Stylists
-          .FirstOrDefault(stylist => stylist.StylistId == id);
+      Stylist targetStylist = _db.GetStylist(id);
       _db.Stylists.Remove(targetStylist);
       _db.SaveChanges();
       return RedirectToAction("Index");

@@ -1,7 +1,5 @@
 using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc;
-using HairSalon.Controllers;
 using HairSalon.Models;
 
 namespace ToDoList.Controllers;
@@ -17,23 +15,25 @@ public class ClientsController : Controller
 
     public ActionResult Index()
     {
-        List<Client> clients = _db.Clients
-        .Include(Client => Client.Stylist)
-        .ToList();
+        List<Client> clients = _db.GetClientList();
         ViewBag.PageTitle = "All Clients";
         return View(clients);
     }
 
     public ActionResult Create(int? id)
     {
-        SelectList stylistList = _db.StylistList(id);
+        SelectList stylistList = _db.StylistSelectList(id);
         if (!stylistList.Any())
         {
             return RedirectToAction("Create", "Stylists");
         }
-        ViewBag.StylistSelectList = stylistList;
+        Dictionary<string, object> model = new() {
+            {"Client", new Client()},
+            {"SelectList", stylistList },
+            {"Usage", "create"},
+        };
         ViewBag.PageTitle = "Add New Client";
-        return View();
+        return View("Form", model);
     }
 
     [HttpPost]
@@ -47,24 +47,28 @@ public class ClientsController : Controller
 
     public ActionResult Details(int id)
     {
-        Client thisClient = _db.Clients
-        .Include(Client => Client.Stylist)
-        .FirstOrDefault(Client => Client.ClientId == id);
+        Client thisClient = _db.GetClient(id);
         ViewBag.PageTitle = $"{thisClient.Name}";
+        
         return View(thisClient);
     }
     public ActionResult Edit(int id)
     {
-        Client thisClient = _db.Clients.Include(Client => Client.Stylist).FirstOrDefault(Client => Client.ClientId == id);
-        ViewBag.StylistSelectList = _db.StylistList();
+        Client thisClient = _db.GetClient(id);
+        SelectList stylistList = _db.StylistSelectList(thisClient.StylistId);
         ViewBag.PageTitle = $"Editing {thisClient.Name}";
-        return View(thisClient);
+        Dictionary<string, object> model = new() {
+            {"Client", thisClient},
+            {"SelectList", stylistList },
+            {"Usage", "edit"},
+        };
+        return View("Form", model);
     }
 
     [HttpPost]
-    public ActionResult Edit(Client Client)
+    public ActionResult Edit(Client client)
     {
-        _db.Clients.Update(Client);
+        _db.Clients.Update(client);
         _db.SaveChanges();
         return RedirectToAction("Index");
     }
