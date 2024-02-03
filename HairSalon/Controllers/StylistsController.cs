@@ -21,9 +21,12 @@ namespace HairSalon.Controllers;
 
     public ActionResult Create()
     {
-      ViewBag.DateNow = DateTime.Now.ToString("dd-MM-yyyy");
       ViewBag.PageTitle = $"Add New Stylist";
-      return View();
+      Dictionary<string, object> model = new() {
+            {"Stylist", new Stylist()},
+            {"Usage", "create"},
+        };
+      return View(model);
     }
 
     [HttpPost]
@@ -40,6 +43,24 @@ namespace HairSalon.Controllers;
       Stylist targetStylist = _db.GetStylist(id);
       ViewBag.PageTitle = $"{targetStylist.Name}";
       return View(targetStylist);
+    }
+
+    public ActionResult Edit(int id)
+    {
+      Stylist thisStylist = _db.GetStylist(id);
+      ViewBag.PageTitle = $"Editing {thisStylist.Name}";
+      Dictionary<string, object> model = new() {
+            {"Stylist", thisStylist},
+            {"Usage", "edit"},
+        };
+      return View(model);
+    }
+    [HttpPost]
+    public ActionResult Edit(Stylist stylist)
+    {
+      _db.Stylists.Update(stylist);
+      _db.SaveChanges();
+      return RedirectToAction("Index");
     }
 
     [HttpPost]
