@@ -32,7 +32,7 @@ By Henry Oberholtzer
 ## Setup/Installation Requirements
 
 - .NET6 or greater is required for set up.
-- To establish locally, download the [repository]() to your computer.
+- To establish locally, [download the repository](https://github.com/henry-oberholtzer/digital-hair-salon/archive/refs/heads/main.zip) to your computer.
 - Open the folder with your terminal and run `dotnet restore` to gather necessary resources.
 - To run the application, within the solution folder, run the command `dotnet run` after the restore.
 - A local instance of MySQL is required to be set up and running to use the project.
