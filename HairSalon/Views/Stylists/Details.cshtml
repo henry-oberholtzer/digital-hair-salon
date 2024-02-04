@@ -1,4 +1,4 @@
-@model HairSalon.Models.Stylist
+@model Stylist
 
 <a asp-controller="Stylists" asp-action="Index">Return to List</a>
 
@@ -7,10 +7,6 @@
 <h5>Added @Model.DateAdded.ToString("D"). | @Model.Clients.Count Clients </h5>
 <p>@Html.DisplayFor(model => model.About)</p>
 
-<a asp-controller="Clients" asp-action="Create" asp-route-id=@Model.StylistId><button>Add a client</button></a>
-<a asp-controller="Stylists" asp-action="Edit" asp-route-id=@Model.StylistId><button>Edit</button></a>
-<form asp-controller="Stylists" asp-action="Delete" asp-route-id=@Model.StylistId method="post">
-  <button type="submit">Delete</button>
-</form>
+@await Html.PartialAsync("_StylistButtonGroup")
 <hr />
 @await Html.PartialAsync("_ClientList", Model.Clients)

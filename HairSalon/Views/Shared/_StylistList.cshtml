@@ -8,6 +8,7 @@
 
 @foreach (Stylist stylist in Model)
 {
-  <li><a asp-controller="Stylists" asp-action="Details" asp-route-id=@stylist.StylistId>@stylist.Name</a></li>
+  <li><a asp-controller="Stylists" asp-action="Details" asp-route-id=@stylist.StylistId>@stylist.Name</a>
+      @await Html.PartialAsync("_StylistButtonGroup", stylist)</li>
 }
 </ul>

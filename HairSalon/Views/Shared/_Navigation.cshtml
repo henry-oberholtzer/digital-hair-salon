@@ -1,8 +1,16 @@
 <nav>
-  <li>Stylists</li>
-  <li><a asp-controller="Stylists" asp-action="Create">Add New</a></li>
-  <li><a asp-controller="Stylists" asp-action="Index">View All</a></li>
-  <li>Clients</li>
-  <li><a asp-controller="Clients" asp-action="Create">Add New</a></li>
-  <li><a asp-controller="Clients" asp-action="Index">View All</a></li>
+  <div class="nav-group">
+    <li class="button drop-button" onclick="dropdown('dropdown1')">Stylists</li>
+  <div id="dropdown1" class="drop-content">
+    <a asp-controller="Stylists" asp-action="Create" ><li class="button">Add New</li></a>
+    <a asp-controller="Stylists" asp-action="Index" ><li class="button">View All</li></a>
+  </div>
+  </div>
+  <div class="nav-group">
+  <li class="button drop-button" onclick="dropdown('dropdown2')">Clients</li>
+  <div id="dropdown2" class="drop-content">
+  <a asp-controller="Clients" asp-action="Create"><li class="button">Add New</li></a>
+  <a asp-controller="Clients" asp-action="Index"><li class="button">View All</li></a>
+  </div>
+  </div>
 </nav>

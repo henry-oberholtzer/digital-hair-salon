@@ -32,10 +32,19 @@ namespace HairSalon.Controllers;
     [HttpPost]
     public ActionResult Create(Stylist stylist)
     {
-      stylist.DateAdded = DateTime.Now; // prevents client side manipulation
-      _db.Stylists.Add(stylist);
-      _db.SaveChanges();
-      return RedirectToAction("Index");
+      if (ModelState.IsValid)
+      {
+        stylist.DateAdded = DateTime.Now;
+        _db.Stylists.Add(stylist);
+        _db.SaveChanges();
+        return RedirectToAction("Index");
+      }
+      ViewBag.PageTitle = $"Add New Stylist";
+      Dictionary<string, object> model = new() {
+            {"Stylist", stylist},
+            {"Usage", "create"},
+        };
+      return View(model);
     }
 
     public ActionResult Details(int id)
@@ -58,9 +67,18 @@ namespace HairSalon.Controllers;
     [HttpPost]
     public ActionResult Edit(Stylist stylist)
     {
+      if (ModelState.IsValid) 
+      {
       _db.Stylists.Update(stylist);
       _db.SaveChanges();
       return RedirectToAction("Index");
+      }
+      ViewBag.PageTitle = $"Editing {stylist.Name}";
+      Dictionary<string, object> model = new() {
+            {"Stylist", stylist},
+            {"Usage", "edit"},
+        };
+      return View(model);
     }
 
     [HttpPost]

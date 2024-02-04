@@ -25,7 +25,6 @@ By Henry Oberholtzer
 ## Stretch Goal Features
 - Styling
 - Stylists and clients are sortable by Date Added, Name, or # of clients / visits
-- Server side data validation
 - Pagination
 
 ## Setup/Installation Requirements

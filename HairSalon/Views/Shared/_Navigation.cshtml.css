@@ -1,0 +1,50 @@
+nav {
+  display: grid;
+  grid-template-columns: 110px 110px;
+  column-gap: 10px;
+}
+
+.nav-group {
+  grid-column: auto;
+}
+
+.button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  width: 110px;
+  border: 1px solid black;
+  border-radius: 30px 3px 30px 3px;
+  height: 30px;
+  text-align: center;
+  background-color: white;
+}
+
+.drop-button {
+  box-shadow: 0px 0px black;
+  transition: box-shadow 200ms ease-in-out;
+}
+
+.drop-button:hover, .drop-button:focus {
+  box-shadow: 0px 5px black;
+}
+
+.button:hover {
+  cursor: pointer;
+}
+
+.drop-content {
+  /* display: grid; */
+  display: none;
+  grid-template-columns: 1fr;
+  margin-left: 5px;
+  margin-top: 5px;
+  row-gap: 5px;
+  position: fixed;
+  z-index: 1;
+}
+
+.drop-show {
+  display: grid;
+}

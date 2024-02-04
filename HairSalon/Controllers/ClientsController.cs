@@ -39,17 +39,27 @@ public class ClientsController : Controller
     [HttpPost]
     public ActionResult Create(Client client)
     {
-        client.DateAdded = DateTime.Now;
-        _db.Clients.Add(client);
-        _db.SaveChanges();
-        return RedirectToAction("Index");
+        if (ModelState.IsValid)
+        {
+            client.DateAdded = DateTime.Now;
+            _db.Clients.Add(client);
+            _db.SaveChanges();
+            return RedirectToAction("Index");
+        }
+        ViewBag.PageTitle = "Add New Client";
+        Dictionary<string, object> model = new() {
+            {"Client", client},
+            {"SelectList", _db.StylistSelectList(client.StylistId)},
+            {"Usage", "create"},
+        };
+        return View(model);
     }
 
     public ActionResult Details(int id)
     {
         Client thisClient = _db.GetClient(id);
         ViewBag.PageTitle = $"{thisClient.Name}";
-        
+
         return View(thisClient);
     }
     public ActionResult Edit(int id)
@@ -68,9 +78,19 @@ public class ClientsController : Controller
     [HttpPost]
     public ActionResult Edit(Client client)
     {
-        _db.Clients.Update(client);
-        _db.SaveChanges();
-        return RedirectToAction("Index");
+        if (ModelState.IsValid)
+        {
+            _db.Clients.Update(client);
+            _db.SaveChanges();
+            return RedirectToAction("Index");
+        }
+        ViewBag.PageTitle = $"Editing {client.Name}";
+        Dictionary<string, object> model = new() {
+            {"Client", client},
+            {"SelectList", _db.StylistSelectList(client.StylistId) },
+            {"Usage", "edit"},
+        };
+        return View(model);
     }
 
     [HttpPost]

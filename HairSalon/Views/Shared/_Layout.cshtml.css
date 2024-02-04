@@ -1,0 +1,13 @@
+:root {
+  font-family: Courier;
+  --text-color: #000000;
+}
+
+a {
+  text-decoration: none;
+  color: var(--text-color);
+}
+
+button:hover {
+  cursor: pointer;
+}
