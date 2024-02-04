@@ -1,8 +1,147 @@
 :root {
   font-family: 'Kanit', sans-serif;
+  --text-color: #000000;
+  --light-green: #6d9370;
+  --dark-green: #486c42;
+  --light-gold: #d0922c;
+  --dark-red: #ca1806;
+  --white: #ffffff;
+  color: var(--dark-green);
+  border-color: var(--light-gold);
+  background-color: var(--white);
+  
+}
+
+body {
+  width: 100vw;
+  height: 100vh;
+  margin: 0;
+  max-width: 100%;
+  max-height: 100%;
+  background-color: var(--light-green);
+  box-sizing: border-box;
 }
 
 a {
   font-style: none;
   text-decoration: none;
+  color: var(--light-green);
+}
+
+#header {
+  width: 100%;
+  height: 50px;
+  display: flex;
+  padding: 0;
+  background-color: var(--dark-red);
+  border-bottom: 2px solid var(--white);
+}
+
+#headerOne {
+  margin-left: 20px;
+}
+
+
+#headerLogo {
+  position: relative;
+  width: 375px;
+  height: 50px;
+  font-weight: 500;
+  text-align: left;
+  text-indent: 40px;
+  color: var(--white);
+  background-color: var(--dark-green);
+  border: 2px solid var(--light-gold);
+  border-radius: 50px 5px;
+  z-index: 4;
+  transition: color 100ms ease-in-out;
+}
+
+#headerLogo:hover {
+  color: #dfdfdf;
+}
+
+#main-container {
+  border: 2px solid var(--light-gold);
+  background-color: var(--white);
+  margin: 60px 20px;
+  padding: 10px 50px 50px 50px;
+  border-radius: 5px 50px;
+}
+
+#nav {
+  top: 25px;
+  left: -40px;
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.button {
+  display: flex;
+  align-items: center;
+  width: 140px;
+  height: 34px;
+  padding: 0 0 0 20px;
+  font-size: 16px;
+  color: var(--dark-green);
+  background-color: var(--white);
+  border: 2px solid var(--light-gold);
+  font-family: 'Kanit', sans-serif;
+  list-style: none;
+  border-radius: 40px 4px;
+  transition: background-color 100ms ease-in-out;
+}
+
+.btn-nav {
+  margin-right: -40px;
+  text-indent: 30px;
+}
+
+.button:hover {
+  background-color: #dfdfdf;
+  cursor: pointer;
+}
+
+.drop-button {
+  height: 40px;
+  z-index: 3;
+}
+
+.drop-content {
+  display: flex;
+}
+
+.drop-content:nth-child(1) {
+  z-index: 2;
+}
+
+.StylistButtonGroup {
+  display: flex;
+  align-items: center;
+}
+
+.StylistButtonGroup form {
+  height: 42px;
+  width: 140px;
+  display: inherit;
+  align-items: inherit;
+}
+
+.list-group {
+  padding: 0;
+  list-style-position: inside;
+  margin: 0 0 8px 0;
+}
+
+.list-item {
+  height: 50px;
+  border-radius: 5px 50px;
+  text-indent: 50px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  border: 2px solid var(--light-gold);
+  justify-content: space-between;
 }
