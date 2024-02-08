@@ -32,10 +32,7 @@ By Henry Oberholtzer
 - .NET6 or greater is required for set up.
 - To establish locally, [download the repository](https://github.com/henry-oberholtzer/digital-hair-salon/archive/refs/heads/main.zip) to your computer.
 - Open the folder with your terminal and run `dotnet restore` to gather necessary resources.
-- To run the application, within the solution folder, run the command `dotnet run` after the restore.
-- A local instance of MySQL is required to be set up and running to use the project.
-- You will need to estalish a copy of the database on your own machine, by importing the `henry_oberholtzer.sql` scheme into your server.
-- In the production direction, `/ProjectName` run `$ touch appsettings.json`
+- In the production direction, `/HairSalon` run `$ touch appsettings.json`
 - In `appsettings.json`, enter the following, replacing `USERNAME` and `PASSWORD` to match the settings of your local MySQL server.
   
 ```
@@ -45,8 +42,10 @@ By Henry Oberholtzer
     }
 }
 ```
-
-- To start the projet, in the production directory, run the command `dotnet run`.
+- A local instance of MySQL (8.0.0 or greater) and MySQLWorkbench (optional) is required to be set up and running to use the project, for information on installing and configuring MySQL, [please see the official documentation.](https://dev.mysql.com/doc/mysql-installation-excerpt/8.3/en/)
+- If you have MySQLWorkbench installed, to add the schema, open the local database instance and navigate to the Administration tab on the left. Select 'Database Import/Restore' and the bubble 'Import from Self-Contained Filed' and navigate to the provided SQL file in the root of the project directory.
+- Select 'New' under 'Default Schema to be Imported To' and then select 'Start Import'. After the import has finished, navigate back to the terminal.
+- To start the projet, in the production directory, run the command `dotnet run` on your terminal.
 
 ## Known Bugs
 
