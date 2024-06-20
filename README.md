@@ -2,6 +2,8 @@
 
 A web application for tracking stylists and their clients, built with C# and Razor Pages, using the MVC structur and a MySQL database, with the EFCore framework.
 
+![Screenshot of Digital Hair Salon](https://raw.githubusercontent.com/henry-oberholtzer/digital-hair-salon/main/screenshot.jpg)
+
 By Henry Oberholtzer
 
 ## Technologies Used
